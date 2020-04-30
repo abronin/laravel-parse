@@ -13,7 +13,7 @@ class ParseHelper
     public static $appId      = 'test_app';
     public static $restKey    = 'test_key';
     public static $masterKey  = 'test_key';
-    public static $serverUrl  = 'http://localhost:1337/';
+    public static $serverUrl  = 'http://parse:1337/';
     public static $mountPath = 'parse';
     public static $accountKey = 'account-key';
 

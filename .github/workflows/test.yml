@@ -1,0 +1,39 @@
+name: Test package
+
+on: push
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    container: composer:1.9.3
+    services:
+      mongo:
+        image: mongo:3.6
+        ports:
+          - 27027:27027
+      parse:
+        image: parseplatform/parse-server:3.1.3
+        ports:
+          - 1337:1337
+        env:
+          PARSE_SERVER_APPLICATION_ID: test_app
+          PARSE_SERVER_MASTER_KEY: test_key
+          PARSE_SERVER_DATABASE_URI: mongodb://mongo/test  
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-      
+      - name: Install dependencies
+        run: composer install
+      - name: Run tests
+        run: ./vendor/bin/phpunit --testdox
