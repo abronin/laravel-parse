@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ModelTest extends TestCase
 {
+    public static function setUpBeforeClass() : void
+    {
+        ParseHelper::setUp();
+    }
+
     public function testPersistance()
     {
         $data = [
