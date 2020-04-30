@@ -1,6 +1,10 @@
+# Note on copyright and authorship
+This package is a fork of parziphal/parse upgraded to be compatible with modern versions of Laravel.
+All the respect and appreciation for the project should be sent to the Parziphal (real author).
+
 # Laravel Parse
 
-This library pretends to make Parse usable in a Eloquent-like manner. For Laravel 5.2+.
+This library pretends to make Parse usable in a Eloquent-like manner. For Laravel 5.2+, 6.x and 7.x.
 
 ## Features
 
